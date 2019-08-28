@@ -9,6 +9,8 @@ import 'package:flutter_ui_4/styleguide/text_styles.dart';
 class SecondaryHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       body: Column(
         children: <Widget>[
@@ -18,7 +20,7 @@ class SecondaryHomePage extends StatelessWidget {
               children: <Widget>[
                 Image.asset(
                   game_sekiro,
-                  height: 600,
+                  height: 400,
                   fit: BoxFit.fitHeight,
                 ),
                 Container(
@@ -27,42 +29,40 @@ class SecondaryHomePage extends StatelessWidget {
                 Column(
                   children: <Widget>[
                     SizedBox(
-                      height: 60.0,
+                      height: 60,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: Container(
-                        height: 50,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(5)),
-                          border: Border.all(width: 2, color: Colors.white),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              InkWell(
-                                child: Icon(
-                                  Icons.menu,
-                                  color: Colors.white,
-                                ),
-                                onTap: () {
-                                  Navigator.pop(context);
-                                },
-                              ),
-                              Icon(
-                                Icons.search,
-                                color: Colors.white,
-                              )
-                            ],
+                    Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 16),
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.white, width: 1),
+                        borderRadius: BorderRadius.all(Radius.circular(4)),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 8.0, horizontal: 12),
+                            child: InkWell(
+                              child: Icon(Icons.menu, color: Colors.white),
+                              onTap: () {
+                                Navigator.pop(context);
+                              },
+                            ),
                           ),
-                        ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 12),
+                            child: Icon(
+                              Icons.search,
+                              color: Colors.white,
+                            ),
+                          )
+                        ],
                       ),
                     ),
                     Spacer(),
                     Padding(
-                      padding: EdgeInsets.only(bottom: 32.0),
+                      padding: const EdgeInsets.only(bottom: 32.0),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
@@ -71,11 +71,14 @@ class SecondaryHomePage extends StatelessWidget {
                             text: TextSpan(
                               children: [
                                 TextSpan(
-                                    text: 'NEW GAME', style: newGameTextStyle),
+                                  text: "NEW GAME",
+                                  style: newGameTextStyle,
+                                ),
                                 TextSpan(text: '\n'),
                                 TextSpan(
-                                    text: 'Seikiro: Shadows Die Twice',
-                                    style: newGameNameTextStyle)
+                                  text: "Sekiro: Shadows Dies Twice",
+                                  style: newGameNameTextStyle,
+                                ),
                               ],
                             ),
                           ),
@@ -85,23 +88,24 @@ class SecondaryHomePage extends StatelessWidget {
                           InkWell(
                             onTap: null,
                             child: Container(
-                              padding: EdgeInsets.symmetric(
-                                  vertical: 4, horizontal: 32),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 32, vertical: 4),
                               decoration: BoxDecoration(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(4)),
-                                  gradient: appGradient),
+                                gradient: appGradient,
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(4)),
+                              ),
                               child: Text(
-                                'Play',
+                                "Play",
                                 style: newGameTextStyle,
                               ),
                             ),
                           ),
                         ],
                       ),
-                    )
+                    ),
                   ],
-                )
+                ),
               ],
             ),
           ),
@@ -112,9 +116,7 @@ class SecondaryHomePage extends StatelessWidget {
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: ContentHeadingWidget(
-                    heading: 'Popular with Friends',
-                  ),
+                  child: ContentHeadingWidget(heading: "Popular with Friends"),
                 ),
                 Expanded(
                   child: SingleChildScrollView(
@@ -124,97 +126,93 @@ class SecondaryHomePage extends StatelessWidget {
                         for (var i = 0; i < popularWithFriends.length; i++)
                           PopularWithFriendsWidget(
                             imagePath: popularWithFriends[i],
-                          )
+                          ),
                       ],
                     ),
                   ),
-                )
+                ),
               ],
             ),
           ),
           Expanded(
-            flex: 2,
+            flex: 3,
             child: Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 16.0,
-              ),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                    child: ContentHeadingWidget(
-                      heading: 'Continue playing',
-                    ),
-                  ),
+                  ContentHeadingWidget(heading: "Continue playing"),
                   Expanded(
                     child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      height: screenHeight * 0.20,
                       decoration: BoxDecoration(
                         gradient: appGradient,
                         borderRadius: BorderRadius.all(Radius.circular(10)),
                       ),
                       child: Row(
                         children: <Widget>[
-                          Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 10.0),
-                            child: Stack(
-                              children: <Widget>[
-                                ClipRRect(
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(8),
+                          Stack(
+                            children: <Widget>[
+                              ClipRRect(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(8)),
+                                child: Image.asset(
+                                  lastPlayedGames[0].imagePath,
+                                  height: screenHeight * 0.13,
+                                  width: 80,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                              Positioned(
+                                left: 25,
+                                right: 25,
+                                top: 0,
+                                bottom: 0,
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: Colors.white,
                                   ),
-                                  child: Image.asset(
-                                    lastPlayedGames[0].imagePath,
-                                    width: 45,
-                                    height: 60,
-                                    fit: BoxFit.cover,
+                                  child: Icon(
+                                    Icons.play_arrow,
+                                    color: Colors.red,
                                   ),
                                 ),
-                                Positioned(
-                                  left: 8,
-                                  right: 8,
-                                  top: 0,
-                                  bottom: 0,
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: Colors.white,
-                                    ),
-                                    child: Icon(
-                                      Icons.play_arrow,
-                                      color: Colors.red,
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                           Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 32),
+                            padding: const EdgeInsets.symmetric(horizontal: 12),
                             child: RichText(
                               text: TextSpan(
                                 children: [
                                   TextSpan(
                                       text: lastPlayedGames[0].name,
-                                      style: headingTwoTextStyle),
+                                      style: headingTwoTextStyle.copyWith(
+                                          color: Colors.white, fontSize: 16)),
                                   TextSpan(text: '\n'),
                                   TextSpan(
-                                      text:
-                                          '${lastPlayedGames[0].hoursPlayed} hours played',
-                                      style: bodyTextStyle)
+                                    text:
+                                        "${lastPlayedGames[0].hoursPlayed} hours played",
+                                    style: bodyTextStyle.copyWith(
+                                        color: Colors.white,
+                                        fontSize: 16,
+                                        height: 1.5),
+                                  ),
                                 ],
                               ),
                             ),
-                          )
+                          ),
                         ],
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
-          )
+          ),
         ],
       ),
     );
