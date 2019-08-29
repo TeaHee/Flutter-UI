@@ -134,7 +134,6 @@ class _CarDetailsAnimationState extends State<CarDetailsAnimation>
         stream: stateBloc.animationStatus,
         builder: (context, snapshot) {
           snapshot.data ? forward() : reverse();
-
           return ScaleTransition(
             scale: scaleAnimation,
             child: FadeTransition(
@@ -229,26 +228,30 @@ class _CarCarouselState extends State<CarCarousel> {
             height: 250,
             viewportFraction: 1.0,
             items: child,
+            autoPlay: true,
             onPageChanged: (index) {
               setState(() {
                 _current = index;
               });
             },
           ),
-          Container(
-            margin: EdgeInsets.only(left: 25),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: _map<Widget>(imgList, (index, assetName) {
-                return Container(
-                  width: 50,
-                  height: 2,
-                  decoration: BoxDecoration(
-                      color: _current == index
-                          ? Colors.grey[100]
-                          : Colors.grey[600]),
-                );
-              }),
+          Padding(
+            padding: const EdgeInsets.only(left: 50.0),
+            child: Container(
+              margin: EdgeInsets.only(left: 25),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: _map<Widget>(imgList, (index, assetName) {
+                  return Container(
+                    width: 50,
+                    height: 2,
+                    decoration: BoxDecoration(
+                        color: _current == index
+                            ? Colors.grey[100]
+                            : Colors.grey[600]),
+                  );
+                }),
+              ),
             ),
           )
         ],
