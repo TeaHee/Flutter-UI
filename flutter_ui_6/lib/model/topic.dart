@@ -22,3 +22,4 @@ final fortniteTopics = [
 ];
 
 final pubgTopics = fortniteTopics;
+final dota2Topics = fortniteTopics;

@@ -33,4 +33,12 @@ final pubgForum = Forum(
     subs: "1000+",
     topics: pubgTopics);
 
-final forums = [fortniteForum, pubgForum];
+final dota2Forum = Forum(
+    title: "Dota 2",
+    imagePath: "assets/images/dota2.jpg",
+    rank: "1",
+    threads: "300",
+    subs: "5000+",
+    topics: dota2Topics);
+
+final forums = [fortniteForum, pubgForum, dota2Forum];
