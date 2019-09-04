@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ui_8/models/character.dart';
 import 'package:flutter_ui_8/styleguide.dart';
 import 'package:flutter_ui_8/widgets/character_widget.dart';
 
@@ -8,6 +9,18 @@ class CharacterListScreen extends StatefulWidget {
 }
 
 class _CharacterListScreenState extends State<CharacterListScreen> {
+  PageController _pageController;
+  int currentPage = 0;
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController(
+      viewportFraction: 1.0,
+      initialPage: currentPage,
+      keepPage: false,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,7 +66,15 @@ class _CharacterListScreenState extends State<CharacterListScreen> {
                 height: 10,
               ),
               Expanded(
-                child: CharacterWidget(),
+                child: PageView(
+                  controller: _pageController,
+                  children: <Widget>[
+                    for (var i = 0; i < characters.length; i++)
+                      CharacterWidget(
+                        character: characters[i],
+                      ),
+                  ],
+                ),
               )
             ],
           ),

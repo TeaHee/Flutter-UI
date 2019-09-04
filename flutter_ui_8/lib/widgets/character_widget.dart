@@ -4,6 +4,14 @@ import 'package:flutter_ui_8/pages/character_details_screen.dart';
 import 'package:flutter_ui_8/styleguide.dart';
 
 class CharacterWidget extends StatelessWidget {
+  final Character character;
+  final PageController pageController;
+  final int currentPage;
+
+  const CharacterWidget(
+      {Key key, this.character, this.pageController, this.currentPage})
+      : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
@@ -15,7 +23,8 @@ class CharacterWidget extends StatelessWidget {
           context,
           PageRouteBuilder(
             transitionDuration: const Duration(milliseconds: 350),
-            pageBuilder: (context, _, __) => CharacterDetailsScreen(),
+            pageBuilder: (context, _, __) =>
+                CharacterDetailsScreen(character: character),
           ),
         );
       },
@@ -25,14 +34,17 @@ class CharacterWidget extends StatelessWidget {
             alignment: Alignment.center,
             child: ClipPath(
               clipper: CharacterCardBackGroundClipper(),
-              child: Container(
-                height: 0.7 * screenHeight,
-                width: 0.9 * screenWidth,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: characters[0].colors,
-                    begin: Alignment.topRight,
-                    end: Alignment.bottomLeft,
+              child: Hero(
+                tag: 'background-${character.name}',
+                child: Container(
+                  height: 0.7 * screenHeight,
+                  width: 0.9 * screenWidth,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: character.colors,
+                      begin: Alignment.topRight,
+                      end: Alignment.bottomLeft,
+                    ),
                   ),
                 ),
               ),
@@ -40,9 +52,12 @@ class CharacterWidget extends StatelessWidget {
           ),
           Align(
             alignment: Alignment(0, -1.5),
-            child: Image.asset(
-              characters[0].imagePath,
-              height: screenHeight * 0.55,
+            child: Hero(
+              tag: 'image-${character.name}',
+              child: Image.asset(
+                character.imagePath,
+                height: screenHeight * 0.55,
+              ),
             ),
           ),
           Padding(
@@ -51,9 +66,17 @@ class CharacterWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
-                Text(
-                  characters[0].name,
-                  style: AppTheme.heading,
+                Hero(
+                  tag: "name-${character.name}",
+                  child: Material(
+                    color: Colors.transparent,
+                    child: Container(
+                      child: Text(
+                        character.name,
+                        style: AppTheme.heading,
+                      ),
+                    ),
+                  ),
                 ),
                 Text(
                   'Tap to Read more',
