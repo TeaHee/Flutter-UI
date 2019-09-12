@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ui_9/pages/dashboard.dart';
 
 class WelcomeScreen extends StatefulWidget {
   @override
@@ -51,7 +52,14 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   padding: EdgeInsets.only(top: 10),
                 ),
                 MaterialButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => DashBoard(),
+                      ),
+                    );
+                  },
                   minWidth: double.infinity,
                   height: 50,
                   child: Text('Get Started'.toUpperCase()),
@@ -60,6 +68,13 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: 5),
+                ),
+                MaterialButton(
+                  onPressed: () {},
+                  minWidth: double.infinity,
+                  height: 50,
+                  textColor: Theme.of(context).primaryColor,
+                  child: Text('Sign In'.toUpperCase()),
                 ),
               ],
             ),
