@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_cupertino_date_picker/flutter_cupertino_date_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:toast/toast.dart';
 
 void main() => runApp(MyApp());
 
@@ -38,6 +39,11 @@ class _DemoState extends State<Demo> {
               maxDateTime: DateTime(2050, 12, 31),
               onConfirm: (DateTime dateTime, List<int> selectedIndex) {
                 print(new DateFormat('dd-MM-yyyy').format(dateTime));
+                Toast.show(
+                    'Ban da chon ${DateFormat('dd-MM-yyyy').format(dateTime)}',
+                    context,
+                    duration: Toast.LENGTH_LONG,
+                    gravity: Toast.BOTTOM);
               },
             );
           },
