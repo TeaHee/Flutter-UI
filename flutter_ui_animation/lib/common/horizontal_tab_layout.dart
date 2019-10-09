@@ -38,7 +38,7 @@ class _HorizontalTabLayoutState extends State<HorizontalTabLayout>
       child: Stack(
         children: <Widget>[
           Positioned(
-            left: -20,
+            left: -30,
             bottom: 0,
             top: 0,
             width: 110.0,
