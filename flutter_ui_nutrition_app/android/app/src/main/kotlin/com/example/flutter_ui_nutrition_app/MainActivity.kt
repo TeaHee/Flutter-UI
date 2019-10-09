@@ -1,4 +1,4 @@
-package com.example.flutter_ui_10
+package com.example.flutter_ui_nutrition_app
 
 import android.os.Bundle
 

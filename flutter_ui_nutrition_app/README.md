@@ -1,4 +1,4 @@
-# flutter_ui_10
+# flutter_ui_nutrition_app
 
 A new Flutter project.
 
